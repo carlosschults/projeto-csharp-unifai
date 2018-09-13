@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5FE95BCD-B43B-4B43-A8C5-62D67154AC40}</ProjectGuid>
+    <ProjectGuid>{30974244-DF93-487E-AFD0-33C7CFAF140E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>carlosschults.ProjetoCSharpUnifai.Aplicacao</RootNamespace>
-    <AssemblyName>ProjetoCSharpUnifai.Aplicacao</AssemblyName>
+    <RootNamespace>carlosschults.ProjetoCSharpUnifai.Dominio</RootNamespace>
+    <AssemblyName>ProjetoCSharpUnifai.Dominio</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,18 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ContatoDto.cs" />
-    <Compile Include="DefaultContatoService.cs" />
-    <Compile Include="IContatoRepository.cs" />
-    <Compile Include="IContatoService.cs" />
-    <Compile Include="OperationResult.cs" />
+    <Compile Include="Contato.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ProjetoCSharpUnifai\ProjetoCSharpUnifai.Dominio\ProjetoCSharpUnifai.Dominio.csproj">
-      <Project>{30974244-df93-487e-afd0-33c7cfaf140e}</Project>
-      <Name>ProjetoCSharpUnifai.Dominio</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

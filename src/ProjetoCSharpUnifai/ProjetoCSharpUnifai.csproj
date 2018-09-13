@@ -48,8 +48,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DefaultContatoService.cs" />
-    <Compile Include="FakeContatoService.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -98,6 +96,10 @@
     <ProjectReference Include="..\ProjetoCSharpUnifai.Aplicacao\ProjetoCSharpUnifai.Aplicacao.csproj">
       <Project>{5fe95bcd-b43b-4b43-a8c5-62d67154ac40}</Project>
       <Name>ProjetoCSharpUnifai.Aplicacao</Name>
+    </ProjectReference>
+    <ProjectReference Include="ProjetoCSharpUnifai.Exterior.Dados\ProjetoCSharpUnifai.Exterior.Dados.csproj">
+      <Project>{C8F23CFC-9956-4187-A93B-B7098880115E}</Project>
+      <Name>ProjetoCSharpUnifai.Exterior.Dados</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
