@@ -11,6 +11,9 @@ namespace carlosschults.ProjetoCsharpUnifai.Exterior.Apresentacao.WinForm
         private IEnumerable<ContatoDto> contatos = new List<ContatoDto>();
         private IContatoService contatosService;
 
+        private const int INDICE_COLUNA_EDITAR = 4;
+        private const int INDICE_COLUNA_EXCLUIR = 5;
+
         public Form1(IContatoService contatosService)
         {
             InitializeComponent();
@@ -36,6 +39,23 @@ namespace carlosschults.ProjetoCsharpUnifai.Exterior.Apresentacao.WinForm
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            switch (e.ColumnIndex)
+            {
+                case INDICE_COLUNA_EDITAR:
+                    EditarContato(e);
+                    break;
+
+                case INDICE_COLUNA_EXCLUIR:
+                    ExcluirContato(e);
+                    break;
+
+                default:
+                    return;
+            }
+        }
+
+        private void ExcluirContato(DataGridViewCellEventArgs e)
+        {
             if (e.ColumnIndex != this.Excluir.Index)
                 return;
 
@@ -48,7 +68,7 @@ namespace carlosschults.ProjetoCsharpUnifai.Exterior.Apresentacao.WinForm
 
             if (resposta == DialogResult.No)
                 return;
-            
+
             int id = (int)dataGridView1.Rows[e.RowIndex].Cells[this.id.Index].Value;
             OperationResult result = contatosService.Delete(id);
 
@@ -64,6 +84,14 @@ namespace carlosschults.ProjetoCsharpUnifai.Exterior.Apresentacao.WinForm
 
                 return;
             }
+        }
+
+        private void EditarContato(DataGridViewCellEventArgs e)
+        {
+            int id = (int)dataGridView1.Rows[e.RowIndex].Cells[this.id.Index].Value;
+            var frm = new NovoContatoForm(contatosService, id);
+            frm.ShowDialog();
+            CarregarContatos();
         }
 
         private void CarregarContatos()

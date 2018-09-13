@@ -9,11 +9,13 @@ namespace carlosschults.ProjetoCsharpUnifai.Exterior.Apresentacao.WinForm
     public partial class NovoContatoForm : Form
     {
         private IContatoService service;
+        private int idParaEdicao;
 
-        public NovoContatoForm(IContatoService service)
+        public NovoContatoForm(IContatoService service, int idParaEdicao = 0)
         {
             InitializeComponent();
             this.service = service;
+            this.idParaEdicao = idParaEdicao;
         }
 
         private void btnSalvar_Click(object sender, EventArgs e)
@@ -63,12 +65,13 @@ namespace carlosschults.ProjetoCsharpUnifai.Exterior.Apresentacao.WinForm
 
             var contato = new ContatoDto
             {
+                Id = idParaEdicao,
                 Nome = nome,
                 Email = email,
                 Telefone = telefone
             };
 
-            OperationResult result = service.Save(contato);
+            OperationResult result = idParaEdicao == 0 ? service.Save(contato) : service.Update(contato);
 
             if (result.Success)
                 MessageBox.Show(
@@ -85,6 +88,18 @@ namespace carlosschults.ProjetoCsharpUnifai.Exterior.Apresentacao.WinForm
                     MessageBoxIcon.Error);
 
             Close();
+        }
+
+        private void NovoContatoForm_Shown(object sender, EventArgs e)
+        {
+            if (idParaEdicao == 0)
+                return;
+
+            ContatoDto contato = service.Get(idParaEdicao);
+            txtNome.Text = contato.Nome;
+            txtNome.Enabled = false;
+            txtEmail.Text = contato.Email;
+            txtTelefone.Text = contato.Telefone;
         }
     }
 }

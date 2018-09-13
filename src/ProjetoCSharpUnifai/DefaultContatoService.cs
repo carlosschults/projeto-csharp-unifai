@@ -42,7 +42,34 @@ namespace carlosschults.ProjetoCsharpUnifai.Exterior.Apresentacao.WinForm
             using (var conexao = new SqlConnection(stringConexao))
             {
                 conexao.Open();
-                var newTeste = conexao.Execute("delete from contatos where id = @id", new { id = id});
+                conexao.Execute("delete from contatos where id = @id", new { id = id});
+            }
+
+            // TODO fazer uma validação de verdade
+            return new OperationResult(true, null);
+        }
+
+        public ContatoDto Get(int id)
+        {
+            ContatoDto contato = null;
+
+            var stringConexao = @"Server=srv010\smartbiohml;User Id=software;Password=smart123;Database=IPMSYSTEM_Carlos_Schults02;";
+            using (var conexao = new SqlConnection(stringConexao))
+            {
+                conexao.Open();
+                contato = conexao.Query<ContatoDto>("select * from contatos where id = @id", new { id = id }).Single();
+            }
+
+            return contato;
+        }
+
+        public OperationResult Update(ContatoDto contato)
+        {
+            var stringConexao = @"Server=srv010\smartbiohml;User Id=software;Password=smart123;Database=IPMSYSTEM_Carlos_Schults02;";
+            using (var conexao = new SqlConnection(stringConexao))
+            {
+                conexao.Open();
+                conexao.Execute("update contatos set telefone = @telefone, email = @email where id = @id", contato);
             }
 
             // TODO fazer uma validação de verdade

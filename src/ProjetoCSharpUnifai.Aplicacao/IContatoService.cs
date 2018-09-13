@@ -7,5 +7,7 @@ namespace carlosschults.ProjetoCSharpUnifai.Aplicacao
         IEnumerable<ContatoDto> GetAll();
         OperationResult Save(ContatoDto contato);
         OperationResult Delete(int id);
+        ContatoDto Get(int id);
+        OperationResult Update(ContatoDto contato);
     }
 }

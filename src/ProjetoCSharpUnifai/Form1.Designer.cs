@@ -29,15 +29,15 @@
         private void InitializeComponent()
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.lblInicial = new System.Windows.Forms.Label();
-            this.btnNovo = new System.Windows.Forms.Button();
-            this.txtPesquisarContato = new System.Windows.Forms.TextBox();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Telefone = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Editar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Excluir = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.lblInicial = new System.Windows.Forms.Label();
+            this.btnNovo = new System.Windows.Forms.Button();
+            this.txtPesquisarContato = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -56,36 +56,9 @@
             this.dataGridView1.Location = new System.Drawing.Point(39, 146);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(550, 150);
+            this.dataGridView1.Size = new System.Drawing.Size(681, 150);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
-            // 
-            // lblInicial
-            // 
-            this.lblInicial.AutoSize = true;
-            this.lblInicial.Location = new System.Drawing.Point(36, 114);
-            this.lblInicial.Name = "lblInicial";
-            this.lblInicial.Size = new System.Drawing.Size(100, 13);
-            this.lblInicial.TabIndex = 2;
-            this.lblInicial.Text = "Pesquisar contatos:";
-            // 
-            // btnNovo
-            // 
-            this.btnNovo.Location = new System.Drawing.Point(39, 326);
-            this.btnNovo.Name = "btnNovo";
-            this.btnNovo.Size = new System.Drawing.Size(75, 23);
-            this.btnNovo.TabIndex = 3;
-            this.btnNovo.Text = "&Novo";
-            this.btnNovo.UseVisualStyleBackColor = true;
-            this.btnNovo.Click += new System.EventHandler(this.btnNovo_Click);
-            // 
-            // txtPesquisarContato
-            // 
-            this.txtPesquisarContato.Location = new System.Drawing.Point(142, 111);
-            this.txtPesquisarContato.Name = "txtPesquisarContato";
-            this.txtPesquisarContato.Size = new System.Drawing.Size(447, 20);
-            this.txtPesquisarContato.TabIndex = 4;
-            this.txtPesquisarContato.TextChanged += new System.EventHandler(this.txtPesquisarContato_TextChanged);
             // 
             // id
             // 
@@ -127,6 +100,33 @@
             this.Excluir.ReadOnly = true;
             this.Excluir.Text = "Excluir";
             this.Excluir.UseColumnTextForButtonValue = true;
+            // 
+            // lblInicial
+            // 
+            this.lblInicial.AutoSize = true;
+            this.lblInicial.Location = new System.Drawing.Point(36, 114);
+            this.lblInicial.Name = "lblInicial";
+            this.lblInicial.Size = new System.Drawing.Size(100, 13);
+            this.lblInicial.TabIndex = 2;
+            this.lblInicial.Text = "Pesquisar contatos:";
+            // 
+            // btnNovo
+            // 
+            this.btnNovo.Location = new System.Drawing.Point(39, 326);
+            this.btnNovo.Name = "btnNovo";
+            this.btnNovo.Size = new System.Drawing.Size(75, 23);
+            this.btnNovo.TabIndex = 3;
+            this.btnNovo.Text = "&Novo";
+            this.btnNovo.UseVisualStyleBackColor = true;
+            this.btnNovo.Click += new System.EventHandler(this.btnNovo_Click);
+            // 
+            // txtPesquisarContato
+            // 
+            this.txtPesquisarContato.Location = new System.Drawing.Point(142, 111);
+            this.txtPesquisarContato.Name = "txtPesquisarContato";
+            this.txtPesquisarContato.Size = new System.Drawing.Size(578, 20);
+            this.txtPesquisarContato.TabIndex = 4;
+            this.txtPesquisarContato.TextChanged += new System.EventHandler(this.txtPesquisarContato_TextChanged);
             // 
             // Form1
             // 
