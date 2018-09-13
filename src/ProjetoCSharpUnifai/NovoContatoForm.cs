@@ -53,6 +53,18 @@ namespace carlosschults.ProjetoCsharpUnifai.Exterior.Apresentacao.WinForm
 
             string email = txtEmail.Text.Trim();
 
+            if (email != string.Empty && !email.Contains("@"))
+            {
+                MessageBox.Show(
+                    "E-mail precisa ser válido (conter uma @).",
+                    "ProjetoCSharp",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation);
+
+                txtEmail.Select();
+                return;
+            }
+
             Contato = new Contato
             {
                 Nome = nome,
