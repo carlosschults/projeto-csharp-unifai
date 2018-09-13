@@ -1,23 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using carlosschults.ProjetoCSharpUnifai.Aplicacao;
 
 namespace carlosschults.ProjetoCsharpUnifai.Exterior.Apresentacao.WinForm
 {
     public partial class NovoContatoForm : Form
     {
-        // TODO campos públicos são má prática
-        public Contato Contato;
+        private IContatoService service;
 
-        public NovoContatoForm()
+        public NovoContatoForm(IContatoService service)
         {
             InitializeComponent();
+            this.service = service;
         }
 
         private void btnSalvar_Click(object sender, EventArgs e)
@@ -65,18 +61,28 @@ namespace carlosschults.ProjetoCsharpUnifai.Exterior.Apresentacao.WinForm
                 return;
             }
 
-            Contato = new Contato
+            var contato = new ContatoDto
             {
                 Nome = nome,
                 Email = email,
                 Telefone = telefone
             };
 
-            MessageBox.Show(
+            OperationResult result = service.Save(contato);
+
+            if (result.Success)
+                MessageBox.Show(
                     "Contato salvo com sucesso.",
                     "ProjetoCSharp",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
+            else
+
+                MessageBox.Show(
+                    result.ErrorMessage,
+                    "ProjetoCSharp",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
 
             Close();
         }

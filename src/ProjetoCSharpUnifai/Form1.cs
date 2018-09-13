@@ -1,67 +1,80 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using carlosschults.ProjetoCSharpUnifai.Aplicacao;
 
 namespace carlosschults.ProjetoCsharpUnifai.Exterior.Apresentacao.WinForm
 {
     public partial class Form1 : Form
     {
-        private List<Contato> contatos = new List<Contato>();
+        private IEnumerable<ContatoDto> contatos = new List<ContatoDto>();
+        private IContatoService contatosService;
 
-        public Form1()
+        public Form1(IContatoService contatosService)
         {
             InitializeComponent();
+            this.contatosService = contatosService;
         }
 
         private void Form1_Shown(object sender, System.EventArgs e)
         {
-            // TODO substituir isso pelo código que realmente busca os contatos
-            contatos = new List<Contato>
-            {
-                new Contato { Nome = "Bill Gates", Email = "bill@microsoft.com", Telefone = "(55)124-1234"},
-                new Contato { Nome = "Mark Zuckerberd", Email = "mark@gmail.com", Telefone = "(55)124-1235"},
-                new Contato { Nome = "Sergey Brinn", Email = "sergey@gmail.com", Telefone = "(55)124-6543"}
-            };
-
-            foreach (var contato in contatos)
-            {
-                dataGridView1.Rows.Add(contato.Nome, contato.Telefone, contato.Email);
-            }
+            CarregarContatos();
         }
 
         private void txtPesquisarContato_TextChanged(object sender, System.EventArgs e)
         {
-            dataGridView1.Rows.Clear();
-
-            // TODO remover duplicação
-            foreach (var contato in contatos.Where(x => x.Nome.StartsWith(txtPesquisarContato.Text, System.StringComparison.InvariantCultureIgnoreCase)))
-            {
-                dataGridView1.Rows.Add(contato.Nome, contato.Telefone, contato.Email);
-            }
+            CarregarContatos();
         }
 
         private void btnNovo_Click(object sender, System.EventArgs e)
         {
-            var frm = new NovoContatoForm();
+            var frm = new NovoContatoForm(contatosService);
             frm.ShowDialog();
-            Contato contatoSalvo = frm.Contato;
-            contatos.Add(contatoSalvo);
+            CarregarContatos();
+        }
 
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex != this.Excluir.Index)
+                return;
+
+            var resposta = MessageBox.Show(
+                "Tem certeza que deseja excluir esse registro?",
+                "ProjetoCSharp",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question,
+                MessageBoxDefaultButton.Button2);
+
+            if (resposta == DialogResult.No)
+                return;
+            
+            int id = (int)dataGridView1.Rows[e.RowIndex].Cells[this.id.Index].Value;
+            OperationResult result = contatosService.Delete(id);
+
+            if (result.Success)
+            {
+                MessageBox.Show(
+                "Contato excluído com sucesso.",
+                "ProjetoCSharp",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
+
+                CarregarContatos();
+
+                return;
+            }
+        }
+
+        private void CarregarContatos()
+        {
+            contatos = contatosService.GetAll();
             dataGridView1.Rows.Clear();
 
             foreach (var contato in contatos.Where(x => x.Nome.StartsWith(txtPesquisarContato.Text, System.StringComparison.InvariantCultureIgnoreCase)))
             {
-                dataGridView1.Rows.Add(contato.Nome, contato.Telefone, contato.Email);
+                dataGridView1.Rows.Add(contato.Id, contato.Nome, contato.Telefone, contato.Email);
             }
         }
-    }
-
-    public class Contato
-    {
-        public string Nome { get; set; }
-
-        public string Telefone { get; set; }
-
-        public string Email { get; set; }
     }
 }
