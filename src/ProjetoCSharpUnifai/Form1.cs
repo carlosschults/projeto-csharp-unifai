@@ -39,6 +39,21 @@ namespace carlosschults.ProjetoCsharpUnifai.Exterior.Apresentacao.WinForm
                 dataGridView1.Rows.Add(contato.Nome, contato.Telefone, contato.Email);
             }
         }
+
+        private void btnNovo_Click(object sender, System.EventArgs e)
+        {
+            var frm = new NovoContatoForm();
+            frm.ShowDialog();
+            Contato contatoSalvo = frm.Contato;
+            contatos.Add(contatoSalvo);
+
+            dataGridView1.Rows.Clear();
+
+            foreach (var contato in contatos.Where(x => x.Nome.StartsWith(txtPesquisarContato.Text, System.StringComparison.InvariantCultureIgnoreCase)))
+            {
+                dataGridView1.Rows.Add(contato.Nome, contato.Telefone, contato.Email);
+            }
+        }
     }
 
     public class Contato
