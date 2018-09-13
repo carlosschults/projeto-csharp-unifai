@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.lblInicial = new System.Windows.Forms.Label();
             this.Nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Telefone = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Editar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Excluir = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.lblInicial = new System.Windows.Forms.Label();
             this.btnNovo = new System.Windows.Forms.Button();
             this.txtPesquisarContato = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -56,15 +56,6 @@
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(550, 150);
             this.dataGridView1.TabIndex = 0;
-            // 
-            // lblInicial
-            // 
-            this.lblInicial.AutoSize = true;
-            this.lblInicial.Location = new System.Drawing.Point(36, 114);
-            this.lblInicial.Name = "lblInicial";
-            this.lblInicial.Size = new System.Drawing.Size(100, 13);
-            this.lblInicial.TabIndex = 2;
-            this.lblInicial.Text = "Pesquisar contatos:";
             // 
             // Nome
             // 
@@ -96,6 +87,15 @@
             this.Excluir.Name = "Excluir";
             this.Excluir.ReadOnly = true;
             // 
+            // lblInicial
+            // 
+            this.lblInicial.AutoSize = true;
+            this.lblInicial.Location = new System.Drawing.Point(36, 114);
+            this.lblInicial.Name = "lblInicial";
+            this.lblInicial.Size = new System.Drawing.Size(100, 13);
+            this.lblInicial.TabIndex = 2;
+            this.lblInicial.Text = "Pesquisar contatos:";
+            // 
             // btnNovo
             // 
             this.btnNovo.Location = new System.Drawing.Point(39, 326);
@@ -111,6 +111,7 @@
             this.txtPesquisarContato.Name = "txtPesquisarContato";
             this.txtPesquisarContato.Size = new System.Drawing.Size(447, 20);
             this.txtPesquisarContato.TabIndex = 4;
+            this.txtPesquisarContato.TextChanged += new System.EventHandler(this.txtPesquisarContato_TextChanged);
             // 
             // Form1
             // 
@@ -123,6 +124,7 @@
             this.Controls.Add(this.dataGridView1);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Shown += new System.EventHandler(this.Form1_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
