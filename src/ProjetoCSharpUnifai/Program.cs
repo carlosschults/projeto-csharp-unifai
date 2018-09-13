@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ProjetoCSharpUnifai
+namespace carlosschults.ProjetoCsharpUnifai.Exterior.Apresentacao.WinForm
 {
     static class Program
     {
